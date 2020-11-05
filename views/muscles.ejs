@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Workout</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body class="bottom">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
+      <a class="navbar-brand" id="powerProgram" href="/">
+        <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
+        POWER PROGRAM
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/workout">Workout Programs</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link active" href="/exercises">Exercises</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/login">Log In</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </nav>
+    <div id="background-exercises"></div>
+    
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/exercises">Exercises</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Muscle Groups</li>
+            </ol>
+        </nav>
+        <div class="row text-center pad">
+            <h1 class="display-4 col-12">Browse by Muscle Group</h1>
+            <p class="col-12 pad">Find the best accessories by muscle group. Simply click on the muscle you would like to explore.</p>
+        </div>
+        <img class="mx-auto d-block" src="images/muscles.jpg" usemap="#image-map">
+        <map name="image-map">
+            <area target="_self" alt="shoulder" title="shoulder" href="/muscle-group?name=Shoulder" coords="269,208,310,161" shape="rect">
+            <area target="_self" alt="shoulder" title="shoulder" href="/muscle-group?name=Shoulder" coords="115,214,158,157" shape="rect">
+            <area target="_self" alt="shoulder" title="shoulder" href="/muscle-group?name=Shoulder" coords="470,215,513,158" shape="rect">
+            <area target="_self" alt="shoulder" title="shoulder" href="/muscle-group?name=Shoulder" coords="619,220,662,163" shape="rect">
+            <area target="_self" alt="chest" title="chest" href="/muscle-group?name=Chest" coords="152,175,274,239" shape="rect">
+            <area target="_self" alt="abs" title="abs" href="/muscle-group?name=Abs" coords="161,244,260,365" shape="rect">
+            <area target="_self" alt="quads" title="quads" href="/muscle-group?name=Quads" coords="142,376,269,521" shape="rect">
+            <area target="_self" alt="calves" title="calves" href="/muscle-group?name=Calves" coords="154,564,262,654" shape="rect">
+            <area target="_self" alt="calves" title="calves" href="/muscle-group?name=Calves" coords="507,551,615,641" shape="rect">
+            <area target="_self" alt="biceps" title="biceps" href="/muscle-group?name=Biceps" coords="276,207,313,285" shape="rect">
+            <area target="_self" alt="biceps" title="biceps" href="/muscle-group?name=Biceps" coords="112,205,149,283" shape="rect">
+            <area target="_self" alt="triceps" title="triceps" href="/muscle-group?name=Triceps" coords="468,205,506,287" shape="rect">
+            <area target="_self" alt="triceps" title="triceps" href="/muscle-group?name=Triceps" coords="629,211,667,293" shape="rect">
+            <area target="_self" alt="back" title="back" href="/muscle-group?name=Back" coords="507,131,630,335" shape="rect">
+            <area target="_self" alt="glutes" title="glutes" href="/muscle-group?name=Glutes" coords="491,423,626,340" shape="rect">
+            <area target="_self" alt="hamstrings" title="hamstrings" href="/muscle-group?name=Hamstrings" coords="491,537,625,424" shape="rect">
+        </map>
+
+    </div>
+</body>
+</html>

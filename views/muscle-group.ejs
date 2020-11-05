@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Workout</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body class="bottom">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
+      <a class="navbar-brand" id="powerProgram" href="/">
+        <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
+        POWER PROGRAM
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/workout">Workout Programs</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link active" href="/exercises">Exercises</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/login">Log In</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </nav>
+    <div id="background-exercises"></div>
+    
+    <div id="sec3" class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/exercises">Exercises</a></li>
+              <li class="breadcrumb-item"><a href="/muscles">Muscle Group</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><%=group%></li>
+            </ol>
+        </nav>
+        <h1 class="display-4 text-center pad"><%=group%> Exercises</h1>
+        <%for(var i=0; i<muscle.length; i++){%>
+          <div class="media pad pad2">
+              <img src=<%=muscle[i].img%>  class="align-self-center" width="350px">
+              <div class="media-body align-self-center">
+                  <h2 class="text-center"><%=muscle[i].name%></h2>
+                  <br>
+                  <div class="row">
+                    <div class="col-5">
+                      <p><span class="b">Why it helps:</span> <%=muscle[i].why%></p>
+                    </div>
+                    <div class="col-7">
+                      <p><span class="b">Problem:</span> <%=muscle[i].problem%></p>
+                      <p><span class="b">Weight:</span><%=muscle[i].weight%></p>
+                      <p><span class="b">Sets & Reps:</span><%=muscle[i].set%></p>
+                    </div>
+                  </div>
+                  <button type="button" class="btn offset-5 discover" data-toggle="modal" data-target="#myModal-<%=i%>">Discover</button>
+              </div>
+            </div>
+            <div id="myModal-<%=i%>" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title"><%=muscle[i].name%></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-center">
+                      <p><%=muscle[i].desc%></p>
+                      <div class="pad row offset-3 col-6 align-items-end">
+                        <p class="b">Download Spreadsheet:</p>
+                        <a href="<%=muscle[i].link%>"><img src="/images/spreadsheet-2127832_640.png" width=70></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <%};%>
+    </div>
+</body>
+</html>

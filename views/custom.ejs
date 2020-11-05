@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Workout</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body class="bottom">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
+    <a class="navbar-brand" id="powerProgram" href="/">
+      <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
+      POWER PROGRAM
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/workout">Workout Programs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/exercises">Exercises</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/login">Log In</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="background-custom"></div>
+  <div class="container">
+    <div class="row text-center pad">
+        <h1 class="display-3 col-12">Your Customised Program</h1>
+        <p class="col-10 offset-1 pad">Tell us a little bit about yourself and your workout goals so we can provide you with the best possible workout tailored to your needs.</p>
+        <div class="card-body text-center"><a type="button" class="btn discover" data-toggle="modal" data-target="#myModal">Start Now</a></div>
+    </div>
+
+    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tell Us A Little Bit About Yourself</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <form class="pad" method="POST" action="/custom-program">
+              <h4>Your level of experience</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="experience" id="exampleRadios1"value="25" >
+                <label class="form-check-label" for="exampleRadios1">
+                  Beginer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="experience" id="exampleRadios2"value="50" >
+                <label class="form-check-label" for="exampleRadios2">
+                  Intermediate
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="experience" id="exampleRadios3" value="75" >
+                <label class="form-check-label" for="exampleRadios3">
+                  Advanced
+                </label>
+              </div>
+              
+              <h4 class="pad">Your workout goal </h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="goal" id="exampleRadios4" value="Strength">
+                <label class="form-check-label" for="exampleRadios4">
+                  Strength
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="goal" id="exampleRadios5" value="Size">
+                <label class="form-check-label" for="exampleRadios5">
+                  Size
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="goal" id="exampleRadios6" value="Peaking">
+                <label class="form-check-label" for="exampleRadios6">
+                  Peaking
+                </label>
+              </div>
+                
+              <h4 class="pad">What lift would you rather focus on? </h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="lift" id="exampleRadios7" value="Bench">
+                <label class="form-check-label" for="exampleRadios7">
+                  Bench
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="lift" id="exampleRadios8" value="Deadlift">
+                <label class="form-check-label" for="exampleRadios8">
+                  Deadlift
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="lift" id="exampleRadios9" value="Squat">
+                <label class="form-check-label" for="exampleRadios9">
+                  Squat
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="lift" id="exampleRadios10" value="Squat Bench Deadlift">
+                <label class="form-check-label" for="exampleRadios10">
+                  All of the above
+                </label>
+              </div>
+
+              <h4 class="pad">Would you rather a short or long program?</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="week" id="exampleRadios11"value="short" >
+                <label class="form-check-label" for="exampleRadios11">
+                  6 weeks and under
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="week" id="exampleRadios12"value="long" >
+                <label class="form-check-label" for="exampleRadios12">
+                  Over 6 weeks
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="week" id="exampleRadios14" value="all" >
+                <label class="form-check-label" for="exampleRadios14">
+                  No preference
+                </label>
+              </div>
+              
+              <h4 class="pad">How many times a week can you train?</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="day" id="exampleRadios15"value="short" >
+                <label class="form-check-label" for="exampleRadios15">
+                  3 days or less
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="day" id="exampleRadios16"value="long" >
+                <label class="form-check-label" for="exampleRadios16">
+                  Over 3 days
+                </label>
+              </div>
+              <button type="submit" class="btn pad discover">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

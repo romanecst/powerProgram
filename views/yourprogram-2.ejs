@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Workout</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body class="bottom">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
+      <a class="navbar-brand" id="powerProgram" href="/">
+        <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
+        POWER PROGRAM
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/workout">Workout Programs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/exercises">Exercises</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/login">Log In</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </nav>
+    <div id="background-exercises"></div>
+    
+    <div id="sec3" class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">My Account</a></li>
+              <li class="breadcrumb-item active" aria-current="page">My Program</li>
+            </ol>
+        </nav>
+        <h1 class="display-4 text-center pad">Add Accessories To Your Program</h1>
+        <div class='row pad'>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Experience Level</a>
+                <a class="dropdown-item" href="#">Targeted Muscles</a>
+                <a class="dropdown-item" href="#">Targeted Lift</a>
+              </div>
+            </div>
+            <input class="form-control col-4 offset-6" type="text" id="search-exercise-field" placeholder="New Search">
+            <button id="search-exercises" type="button" class="btn discover ">Search</button>
+          </div>
+        <form action="/yourprogram-param" method="POST">
+          <%for(var i=0; i<exercise.length; i++){%>
+          <div class="media pad pad2">
+            <input name="ex" type="checkbox" class="align-self-center check" value="<%=exercise[i].name%>">
+            <img src=<%=exercise[i].img%>  class="align-self-center" width="350px">
+            <div class="media-body align-self-center">
+                <h2 class="text-center"><%=exercise[i].name%></h2>
+                <br>
+                <div class="row">
+                  <div class="col-5">
+                    <p><span class="b">Why it helps:</span> <%=exercise[i].why%></p>
+                  </div>
+                  <div class="col-7">
+                    <p><span class="b">Problem:</span> <%=exercise[i].problem%></p>
+                    <p><span class="b">Weight:</span><%=exercise[i].weight%></p>
+                    <p><span class="b">Sets & Reps:</span><%=exercise[i].set%></p>
+                  </div>
+                </div>
+                <button type="button" class="btn offset-5 discover" data-toggle="modal" data-target="#myModal-<%=i%>">Discover</button>
+            </div>
+          </div>
+          <div id="myModal-<%=i%>" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><%=exercise[i].name%></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p><%=exercise[i].desc%></p>
+                    <div class="pad row offset-3 col-6 align-items-end">
+                      <p class="b">Download Spreadsheet:</p>
+                      <a href="<%=exercise[i].link%>"><img src="/images/spreadsheet-2127832_640.png" width=70></a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <%};%>
+            
+        <input type="submit" class="btn discover pad col-2 offset-5">
+        </form>
+    </div>
+    <script src="/javascripts/main.js"></script>
+</body>
+</html>

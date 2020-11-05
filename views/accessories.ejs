@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Workout</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body class="bottom">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
+      <a class="navbar-brand" id="powerProgram" href="/">
+        <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
+        POWER PROGRAM
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/workout">Workout Programs</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link active" href="/exercises">Exercises</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/login">Log In</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </nav>
+    <div id="background-exercises"></div>
+    
+    <div id="sec3" class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/exercises">Exercises</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Accessories</li>
+            </ol>
+        </nav>
+        <div class="row text-center pad">
+            <h1 class="display-4 col-12">Browse by Accessories</h1>
+            <p class="col-12 pad">Find the best accessories to help improve your squat, bench and deadlift.</p>
+        </div>
+        <div class="row pad">
+          <div class="col-4">
+            <div class="card text-center">
+                <img src = "/images/pexels-leon-martinez-1552249.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-body text-center">Browse Squat Accessories</p>
+                    <a href="/compound?page=Squat" class="btn discover lien">Go</a>
+                </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card text-center">
+                <img src = "/images/pexels-mister-mister-3490348.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-body text-center">Browse Bench Accessories</p>
+                    <a href="/compound?page=Bench" class="btn discover lien">Go</a>
+                </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card text-center">
+                <img src = "/images/pexels-victor-freitas-949128.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-body text-center">Browse Deadlift Accessories</p>
+                    <a href="/compound?page=Deadlift" class="btn discover lien">Go</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
