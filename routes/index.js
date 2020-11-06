@@ -116,11 +116,12 @@ router.post('/custom-program', async function(req, res, next) {
   };
   var users = await userModel.find();
   
-  if(req.session.user!=undefined && req.session.user!=''){
-    req.session.workout = workout;
+  if(req.session.user!=undefined && req.session.user!=null){
+    await userModel.updateOne(
+      {email: req.session.user.email},
+      {$push: {workouts: workout}}
+    );
   };
-  console.log(req.session.user);
-  console.log(req.session.workout);
   res.render('custom-program', {workout});
 });
 
@@ -192,6 +193,11 @@ router.post('/signup', async function(req, res, next){
   }
 });
 
+router.get('/logout', function(req,res){
+  req.session.user = null;
+  res.redirect('/login');
+});
+
 router.get('/mypage', function(req, res, next) {
   res.render('mypage', {name: req.session.user.username});
 });
@@ -261,9 +267,36 @@ router.post('/yourprogram-param', function(req, res, next) {
   res.render('yourprogram-3');
 });
 
-router.get('/yourworkouts', function(req, res, next) {
-  
-  res.render('yourworkouts', {workout:req.session.workout});
+router.get('/yourworkouts', async function(req, res, next) {
+  if(req.query.add != undefined ){
+    var workout = await workoutModel.find();
+    var add = true;
+  }else{
+    var user = await userModel.findOne({email: req.session.user.email});
+    var workout = user.workouts;
+  }
+  var display = "display: none;";
+  res.render('yourworkouts', {workout, add, display});
+});
+
+router.post('/workouts', async function(req, res, next) {
+  if(typeof req.body.workout == 'string'){
+    var program = await workoutModel.findById(req.body.workout);
+    await userModel.updateOne(
+      {email: req.session.user.email},
+      {$push: {workouts: program}}
+    );
+  }else{
+    var test = req.body.workout
+    test.forEach(async function(el){
+      var program = await workoutModel.findOne({_id: el})
+      await userModel.updateOne(
+        {email: req.session.user.email},
+        {$push: {workouts: program}}
+      );
+    }); 
+  };
+  res.redirect('/yourworkouts');
 });
 
 module.exports = router;

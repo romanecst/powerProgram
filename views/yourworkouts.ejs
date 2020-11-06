@@ -35,61 +35,84 @@
                   My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Log Out</a>
+                  <a class="dropdown-item" href="/logout">Log Out</a>
                 </div>
               </li>
             </ul>
           </div>
     </nav>
-    <div id="background-custom"></div>
+    <div id="background-mypage"></div>
   <div class="container">
+    <%if (workout.length == 0){%>
+      <div class="row text-center pad">
+        <h1 class="display-4 col-12">You do not have any favourite workout program yet.</h1>
+    </div>
+    <%}else{%>
     <div class="row text-center pad">
+      <%if(add != undefined){%>
+        <h1 class="display-3 col-12">Select your favourite workouts</h1>
+      <%}else{%>
         <h1 class="display-3 col-12">Your Workouts</h1>
+      <%}%>
     </div>
-    <%for(var i=0; i<workout.length; i++){%>
-    <div class="media pad pad2">
-      <img src=<%=workout[i].img%>  class="align-self-center" width="350px">
-      <div class="media-body align-self-center">
-          <h2 class="text-center"><%=workout[i].name%></h2>
-          <div id="flex">
-            <div>
-              <p>Target lift: <span class="lift"><%=workout[i].lift%></span></p>
-              <p>Workout goal: <%=workout[i].goal%></p>
-              <p>Duration: <%=workout[i].duration%> weeks </p>
-            </div>
-            <div>
-              <p>Days per week: <%=workout[i].day%></p>
-              <p >Experience Level:</p>
-              <div class="progress" style="width: 40%;">
-                <div class="progress-bar <%=workout[i].color%>" role="progressbar" style="width: <%=workout[i].experience%>%" aria-valuenow="<%=workout[i].experience%>" aria-valuemin="0" aria-valuemax="100"></div>
+    <form action="/workouts" method="POST">
+      <%for(var i=0; i<workout.length; i++){%>
+      <div class="media pad pad2">
+        <%if(add != undefined){
+          var hidden = "display: none;";
+          var display = "display: inline-block;";
+          %>
+        <input name="workout" type="checkbox" class="align-self-center check" value="<%=workout[i]._id%>">
+        <img src=<%=workout[i].img%>  class="align-self-center" width="350px">
+        <%}else{%>
+        <img src=<%=workout[i].img%>  class="align-self-center" width="350px">
+        <%}%>
+        <div class="media-body align-self-center">
+            <h2 class="text-center"><%=workout[i].name%></h2>
+            <div id="flex">
+              <div>
+                <p>Target lift: <span class="lift"><%=workout[i].lift%></span></p>
+                <p>Workout goal: <%=workout[i].goal%></p>
+                <p>Duration: <%=workout[i].duration%> weeks </p>
+              </div>
+              <div>
+                <p>Days per week: <%=workout[i].day%></p>
+                <p >Experience Level:</p>
+                <div class="progress" style="width: 40%;">
+                  <div class="progress-bar <%=workout[i].color%>" role="progressbar" style="width:<%=workout[i].experience%>%;" aria-valuenow="<%=workout[i].experience%>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
-          </div>
-          <button type="button" class="btn offset-5 discover" data-toggle="modal" data-target="#myModal-<%=i%>">Discover</button>
-      </div>
-    </div>
-
-    <div id="myModal-<%=i%>" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title"><%=workout[i].name%></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-center">
-              <p><%=workout[i].desc%></p>
-              <div class="pad row offset-3 col-6 align-items-end">
-                <p class="b">Download Spreadsheet:</p>
-                <a href="<%=workout[i].link%>"><img src="/images/spreadsheet-2127832_640.png" width=70></a>
-              </div>
-            </div>
+            <button type="button" class="btn offset-5 discover" data-toggle="modal" data-target="#myModal-<%=i%>">Discover</button>
         </div>
       </div>
-    </div>
-    <%};%>
 
+      <div id="myModal-<%=i%>" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><%=workout[i].name%></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+                <p><%=workout[i].desc%></p>
+                <div class="pad row offset-3 col-6 align-items-end">
+                  <p class="b">Download Spreadsheet:</p>
+                  <a href="<%=workout[i].link%>"><img src="/images/spreadsheet-2127832_640.png" width=70></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <%}
+      }%>
+      <div class="media-body text-center pad">
+          <a href="/yourworkouts?add=true" class="btn btn-dark" style="<%=hidden%>">Add Workouts</a>
+      </div>
+      <button type="submit" class="btn btn-dark" style="<%=display%>">Add workouts to favourites</button>
+    </form>
   </div>
 </body>
 </html>
