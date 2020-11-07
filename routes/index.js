@@ -208,7 +208,7 @@ router.get('/mypage-modify', function(req, res, next) {
 });
 
 router.post('/mypage', function(req, res, next) {
-  
+  console.log(req.body);
   res.redirect('/mypage');
 });
 

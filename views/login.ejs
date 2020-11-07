@@ -13,36 +13,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light nav-p">
-      <a class="navbar-brand" id="powerProgram" href="/">
-        <img src="images/powerProgram.png" width=50 class="d-inline-block align-self-center" alt="">
-        POWER PROGRAM
-      </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/workout">Workout Programs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/exercises">Exercises</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  My Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Log In</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-    </nav>
+    
+<%- include('header'); %>
     <div id="background" >
         <div class="container">
             <div class="row">
