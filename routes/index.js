@@ -199,7 +199,17 @@ router.get('/logout', function(req,res){
 });
 
 router.get('/mypage', function(req, res, next) {
-  res.render('mypage', {name: req.session.user.username});
+  var name = req.session.user.username.charAt(0).toUpperCase() + req.session.user.username.slice(1);
+  res.render('mypage', {name});
+});
+
+router.get('/mypage-modify', function(req, res, next) {
+  res.render('mypage-mod', {user: req.session.user});
+});
+
+router.post('/mypage', function(req, res, next) {
+  
+  res.redirect('/mypage');
 });
 
 router.get('/muscles', function(req, res, next) {
