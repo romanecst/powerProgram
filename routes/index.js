@@ -23,20 +23,20 @@ var compound;
 var ex;
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-  res.render('main');
+router.get('/', function(req, res, next) {
+  res.render('main',{user: req.session.user});
 });
 
 router.get('/accessories', function(req, res, next) {
-  res.render('accessories');
+  res.render('accessories',{user: req.session.user});
 });
 
 router.get('/bench', function(req, res, next) {
-  res.render('bench');
+  res.render('bench',{user: req.session.user});
 });
 
 router.get('/custom', function(req, res, next) {
-  res.render('custom');
+  res.render('custom',{user: req.session.user});
 });
 
 // router.post('/custom-program', async function(req, res, next) {
@@ -122,7 +122,7 @@ router.post('/custom-program', async function(req, res, next) {
       {$push: {workouts: workout}}
     );
   };
-  res.render('custom-program', {workout});
+  res.render('custom-program', {workout, user: req.session.user});
 });
 
 router.get('/compound', async function(req, res, next) {
@@ -140,17 +140,17 @@ router.get('/compound', async function(req, res, next) {
   }else if(req.query.page == "Bench"){
     exercise = bench;
   };
-  res.render('compound',{exercise, lift: req.query.page});
+  res.render('compound',{exercise, lift: req.query.page, user: req.session.user});
 });
 
 router.get('/exercises', function(req, res, next) {
-  res.render('exercises');
+  res.render('exercises',{user: req.session.user});
 });
 
 router.get('/login', function(req, res, next) {
   var alert = false;
   var exist = null;
-  res.render('login', {type: req.query.type, alert, exist});
+  res.render('login', {type: req.query.type, alert, exist ,user: req.session.user});
 });
 
 router.post('/signin', async function(req, res, next){
@@ -169,7 +169,7 @@ router.post('/signin', async function(req, res, next){
     var alert = true;
     var exist = null;
     var type = '';
-    res.render('login', {type, alert, exist});
+    res.render('login', {type, alert, exist, user: req.session.user});
   }
 });
 
@@ -189,7 +189,7 @@ router.post('/signup', async function(req, res, next){
   }else{
     var type = 'signup';
     var alert = false;
-    res.render('login',{type, alert, exist});
+    res.render('login',{type, alert, exist ,user: req.session.user});
   }
 });
 
@@ -200,28 +200,48 @@ router.get('/logout', function(req,res){
 
 router.get('/mypage', function(req, res, next) {
   var name = req.session.user.username.charAt(0).toUpperCase() + req.session.user.username.slice(1);
-  res.render('mypage', {name});
+  res.render('mypage', {name, user: req.session.user});
 });
 
 router.get('/mypage-modify', function(req, res, next) {
   res.render('mypage-mod', {user: req.session.user});
 });
 
-router.post('/mypage', function(req, res, next) {
-  console.log(req.body);
+router.post('/mypage', async function(req, res, next) {
+  if(req.body.username != req.session.user.username){
+    await userModel.updateOne(
+      {email: req.session.user.email},
+      {username: req.body.username}
+    );
+    req.session.user.username = req.body.username;
+  };
+  if(req.body.email != req.session.user.email){
+    await userModel.updateOne(
+      {email: req.session.user.email},
+      {email: req.body.email}
+    );
+    req.session.user.email = req.body.email;
+  };
+  if(req.body.password != req.session.user.password){
+    await userModel.updateOne(
+      {email: req.session.user.email},
+      {password: req.body.password}
+    );
+    req.session.user.password = req.body.password;
+  };
   res.redirect('/mypage');
 });
 
 router.get('/muscles', function(req, res, next) {
-  res.render('muscles');
+  res.render('muscles',{user: req.session.user});
 });
 
 router.get('/muscle-group', function(req, res, next) {
-  res.render('muscle-group',{muscle, group: req.query.name});
+  res.render('muscle-group',{muscle, group: req.query.name ,user: req.session.user});
 });
 
 router.get('/squat', function(req, res, next) {
-  res.render('squat');
+  res.render('squat',{user: req.session.user});
 });
 
 router.get('/workout', async function(req, res, next) {
@@ -231,7 +251,7 @@ router.get('/workout', async function(req, res, next) {
   }else{
     if(req.query.exp !=undefined){
       workout = await workoutModel.find(
-        {experience: exp}
+        {experience: req.query.exp}
       );
     }else if(req.query.goal !=undefined){
       workout = await workoutModel.find(
@@ -253,11 +273,11 @@ router.get('/workout', async function(req, res, next) {
       }
     };
   };
-  res.render('workout',{workout});
+  res.render('workout',{workout, user: req.session.user});
 });
 
 router.get('/yourprogram-compound', function(req, res, next) {
-  res.render('yourprogram-1');
+  res.render('yourprogram-1',{user: req.session.user});
 });
 
 router.post('/yourprogram-accessories', function(req, res, next) {
@@ -269,12 +289,12 @@ router.post('/yourprogram-accessories', function(req, res, next) {
   bench.forEach(el =>{
     exercise.push(el);
   });
-  res.render('yourprogram-2',{exercise});
+  res.render('yourprogram-2',{exercise, user: req.session.user});
 });
 
 router.post('/yourprogram-param', function(req, res, next) {
   ex = req.body.ex;
-  res.render('yourprogram-3');
+  res.render('yourprogram-3',{user: req.session.user});
 });
 
 router.get('/yourworkouts', async function(req, res, next) {
@@ -286,10 +306,10 @@ router.get('/yourworkouts', async function(req, res, next) {
     var workout = user.workouts;
   }
   var display = "display: none;";
-  res.render('yourworkouts', {workout, add, display});
+  res.render('yourworkouts', {workout, add, display, user: req.session.user});
 });
 
-router.post('/workouts', async function(req, res, next) {
+router.post('/workoutsave', async function(req, res, next) {
   if(typeof req.body.workout == 'string'){
     var program = await workoutModel.findById(req.body.workout);
     await userModel.updateOne(

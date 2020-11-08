@@ -18,11 +18,16 @@
               <a class="nav-link" href="/exercises">Exercises</a>
             </li>
             <li class="nav-item dropdown">
-              <a id="account"class="nav-link dropdown-toggle btn" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a id="account"class="nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 My Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%if(user!= undefined && user != null  ){%>
+                <a class="dropdown-item" href="/mypage">My Page</a>
+                <a class="dropdown-item" href="/logout">Log Out</a>
+                <%}else{%>
                 <a class="dropdown-item" href="/login">Log In</a>
+                <%}%>
               </div>
             </li>
           </ul>
