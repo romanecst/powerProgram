@@ -1,3 +1,5 @@
+#URI
+models/URI.js
 # Logs
 logs
 *.log
